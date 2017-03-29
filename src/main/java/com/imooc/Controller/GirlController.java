@@ -1,5 +1,8 @@
-package com.imooc;
+package com.imooc.Controller;
 
+import com.imooc.domain.Girl;
+import com.imooc.repository.GirlRepository;
+import com.imooc.service.GirlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

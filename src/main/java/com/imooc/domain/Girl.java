@@ -1,4 +1,4 @@
-package com.imooc;
+package com.imooc.domain;
 
 import com.sun.javafx.beans.IDProperty;
 import org.omg.CORBA.INTERNAL;
