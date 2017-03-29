@@ -4,6 +4,7 @@ import com.imooc.domain.Girl;
 import com.imooc.repository.GirlRepository;
 import com.imooc.service.GirlService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Null;
 import java.util.List;
 
 
@@ -42,16 +45,16 @@ public class GirlController {
 
     /**
      * 添加一个女生
-     * @param cupSize
-     * @param age
      * @return
      */
     @PostMapping(value = "/girls")
-    public Girl girlAdd(@RequestParam("cupSize") String cupSize,
-                        @RequestParam("age") Integer age){
-        Girl girl = new Girl();
-        girl.setCupSize(cupSize);
-        girl.setAge(age);
+    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+        girl.setCupSize(girl.getCupSize());
+        girl.setAge(girl.getAge());
 
         return girlRepository.save(girl);
     }
